@@ -11,10 +11,12 @@ Renders a menu for the given menu ID.
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>
+    </div>
   </nav>
 {{- end }}
 
@@ -33,13 +35,14 @@ Renders a menu for the given menu ID.
         {{- $name = . }}
       {{- end }}
     {{- end }}
-    <li>
+    <li class="nav-item">
       <a
         {{- range $k, $v := $attrs }}
           {{- with $v }}
             {{- printf " %s=%q" $k $v | safeHTMLAttr }}
           {{- end }}
         {{- end -}}
+        class="nav-link"
       >{{ $name }}</a>
       {{- with .Children }}
         <ul>

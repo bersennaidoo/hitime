@@ -3,14 +3,15 @@ import startDevServer from "@cypress/vite-dev-server";
 
 export default defineConfig({
   e2e: {
-    specPattern: "cypress/e2e/**/*.spec.cy.{feature,ts,tsx}",
+    baseUrl: "http://localhost:1313",
+    specPattern: "cypress/e2e/**/**/*.spec.cy.{feature,ts,tsx}",
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
   },
 
   component: {
-    specPattern: "cypress/component/**/*.test.cy.{ts,tsx}",
+    specPattern: "static/react/**/**/*.test.cy.{ts,tsx}",
     devServer: {
       framework: "react",
       bundler: "vite",
