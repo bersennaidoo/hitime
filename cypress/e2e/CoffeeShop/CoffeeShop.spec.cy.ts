@@ -1,3 +1,19 @@
+// In order to purchase items
+// As a customer
+// I want to view items
+describe("View Items", () => {
+
+    it("should display a list of items", () => {
+
+        // Customer visits coffeeshop
+        cy.visit("/coffeeshop")
+
+        // Customer see a list of items to purchase
+        cy.getByCy("thumbnail").should("be.visible")
+    })
+})
+
+/*
 // A user logs in to search and browse items to buy
 describe("Login", () => {
     // In order to search, browse and buy items
@@ -47,4 +63,4 @@ describe("Orders", () => {
 
         // the system should update cart items according to user action and confirm update
     })
-})
+})*/

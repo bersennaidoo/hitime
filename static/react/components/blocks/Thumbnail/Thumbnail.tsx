@@ -14,10 +14,10 @@ const Thumbnail: FC<IThumbnailProps> = (props: IThumbnailProps) => {
           data-cy="thumbnail"
           className="thumbnail-component"
         >
-            <div className="thumbnail-component__div">
-                <img className="thumbnail-component__img" src={image} alt={title} />
+            <div>
+                <img  src={image} alt={title} />
             </div>
-            <p className="thumbnail-component__p">{title}</p>
+            <p>{title}</p>
         </a>
     )
 }

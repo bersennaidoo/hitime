@@ -24465,11 +24465,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx3 = jsxWithValidationDynamic;
-          var jsxs = jsxWithValidationStatic;
+          var jsx7 = jsxWithValidationDynamic;
+          var jsxs4 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx3;
-          exports.jsxs = jsxs;
+          exports.jsx = jsx7;
+          exports.jsxs = jsxs4;
         })();
       }
     }
@@ -24491,18 +24491,75 @@
   var import_react = __toESM(require_react());
   var import_client = __toESM(require_client());
 
-  // static/react/App.tsx
+  // static/react/components/blocks/Header/Header.tsx
   var import_jsx_runtime = __toESM(require_jsx_runtime());
+  var CoffeeLogo = "/images/30x22.png";
+  var Header = (props) => {
+    const {} = props;
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("header", { "data-cy": "header", className: "header-component", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", { src: CoffeeLogo, alt: "coffee logo" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Coffee Shop" })
+    ] });
+  };
+  var Header_default = Header;
+
+  // static/react/components/blocks/Thumbnail/Thumbnail.tsx
+  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var Thumbnail = (props) => {
+    const { image, title } = props;
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)(
+      "a",
+      {
+        "data-cy": "thumbnail",
+        className: "thumbnail-component",
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("img", { src: image, alt: title }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("p", { children: title })
+        ]
+      }
+    );
+  };
+  var Thumbnail_default = Thumbnail;
+
+  // static/react/components/features/CoffeeShop/ThumbnailContainer/ThumbnailPresenter.tsx
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+  var ThumbnailPresenter = (props) => {
+    const { items } = props;
+    return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Thumbnail_default, { image: item.imageId, title: item.title }, item.itemId)) });
+  };
+  var ThumbnailPresenter_default = ThumbnailPresenter;
+
+  // static/react/components/features/CoffeeShop/ThumbnailContainer/ThumbnailContainer.tsx
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var ThumbnailContainer = (props) => {
+    const { items } = props;
+    return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "home-component", children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(ThumbnailPresenter_default, { items }) });
+  };
+  var ThumbnailContainer_default = ThumbnailContainer;
+
+  // static/react/App.tsx
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
   function App() {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "pt-5 mt-5", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", { children: "Entry point react" }) });
+    const items = [
+      { itemId: "1", imageId: "/images/200x200.png", title: "Drip Coffee", price: 0, description: "A product", salePrice: 0 },
+      { itemId: "2", imageId: "/images/200x200.png", title: "Cookie", price: 0, description: "A product", salePrice: 0 },
+      { itemId: "3", imageId: "/images/200x200.png", title: "Croissant", price: 0, description: "A product", salePrice: 0 },
+      { itemId: "4", imageId: "/images/200x200.png", title: "Cupcake", price: 0, description: "A product", salePrice: 0 },
+      { itemId: "5", imageId: "/images/200x200.png", title: "French Press", price: 0, description: "A product", salePrice: 0 },
+      { itemId: "6", imageId: "/images/200x200.png", title: "Iced Coffee", price: 0, description: "A product", salePrice: 0 }
+    ];
+    return /* @__PURE__ */ (0, import_jsx_runtime5.jsxs)("div", { className: "pt-5 mt-5", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(Header_default, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime5.jsx)(ThumbnailContainer_default, { items })
+    ] });
   }
   var App_default = App;
 
   // static/react/main.tsx
-  var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(import_react.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(App_default, {}) })
   );
 })();
 /*! Bundled license information:

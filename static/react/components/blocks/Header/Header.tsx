@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-const CoffeeLogo = "images/30x22.png"
+const CoffeeLogo = "/images/30x22.png"
 
 interface IHeaderProps {}
 
@@ -9,8 +9,8 @@ const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
 
   return (
     <header data-cy="header" className="header-component">
-      <img className="header-component__img" src={CoffeeLogo} alt="coffee logo" />
-      <h1 className="header-component__h1">Coffee Shop</h1>
+      <img src={CoffeeLogo} alt="coffee logo" />
+      <h1>Coffee Shop</h1>
     </header>
   );
 };

@@ -12,6 +12,9 @@ interface IThumbnailPresenterProps {
     itemId: string
     imageId: string
     title: string
+    price: number
+    description: string
+    salePrice: number
   }[]
 }
 
@@ -21,11 +24,11 @@ const ThumbnailPresenter: FC<IThumbnailPresenterProps> = (
   const { items } = props;
 
   return (
-    <>
+    <div>
       {items.map((item) => (
         <Thumbnail key={item.itemId} image={item.imageId} title={item.title} />
       ))}
-    </>
+    </div>
   );
 };
 

@@ -1,47 +1,83 @@
 .header-component {
-    display: flex;
-    margin-bottom: 10px;
-    box-shadow: 0px 9px 13px rgb(0 0 0 / 5%);
-    align-items: center;
-    padding: 0 20px;
-    &__img {
-        height: 50px;
-        width: 50px;
+  display: flex;
+  margin-bottom: 10px;
+  box-shadow: 0px 9px 13px rgb(0, 0, 0 / 5%);
+  align-items: center;
+  padding: 0 20px;
+  img {
+    height: 50px;
+    width: 50px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #674836;
+    margin-left: 15px;
+  }
+  @media (min-width: 768px) {
+    & {
+      padding: 0 50px;
     }
-    &__h1 {
-        font-size: 36px;
-        font-weight: 700;
-        color: #674836;
-        margin-left: 15px;
+    img {
+      height: 60px;
+      width: 60px;
     }
+  }
 }
 
 .thumbnail-component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  div {
+    background-color: #b9a28d;
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+  }
+  img {
+    height: 106px;
+    width: 106px;
+    transition: transform 333ms ease;
+  }
+  p {
+    display: flex;
     width: 100%;
-    text-decoration: none;
-    color: black;
-    &__div {
-        background-color: #b9a28d;
-        border-radius: 8px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 40px;
-    }
-    &__img {
-        height: 106px;
-        width: 106px;
-    }
-    &__p {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        margin: 9px 0 0;
-        font-size: 21px;
-        text-align: center;
-        white-space: nowrap;
-    }
+    justify-content: center;
+    align-items: center;
+    margin: 9px 0 0;
+    font-size: 21px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  &:hover img {
+    transform: scale(1.2);
+  }
+}
+
+.home-component {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 32px 10px;
+  padding: 32px 20px;
+
+  .thumbnail-component:nth-child(3n + 2) div {
+    background-color: #98a699;
+  }
+
+  .thumbnail-component:nth-child(3n + 3) div {
+    background-color: #3f3f40;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-component {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 40px 50px;
+    grid-gap: 40px 15px;
+  }
 }

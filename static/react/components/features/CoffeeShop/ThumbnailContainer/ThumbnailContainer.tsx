@@ -1,21 +1,27 @@
-import React, { FC } from "react"
-import ThumbnailPresenter from "./ThumbnailPresenter"
+import React, { FC } from "react";
+import ThumbnailPresenter from "./ThumbnailPresenter";
 
 interface IThumbnailContainerProps {
-    items: {
-        itemId: string
-        imageId: string
-        title: string
-    }[]
+  items: {
+    itemId: string;
+    imageId: string;
+    title: string;
+    price: number;
+    description: string;
+    salePrice: number;
+  }[];
 }
 
-const ThumbnailContainer: FC<IThumbnailContainerProps> = (props: IThumbnailContainerProps) => {
+const ThumbnailContainer: FC<IThumbnailContainerProps> = (
+  props: IThumbnailContainerProps
+) => {
+  const { items } = props;
 
-    const { items } = props
+  return (
+    <div className="home-component">
+      <ThumbnailPresenter items={items} />
+    </div>
+  );
+};
 
-    return (
-        <ThumbnailPresenter items={items} />
-    )
-}
-
-export default ThumbnailContainer
+export default ThumbnailContainer;
