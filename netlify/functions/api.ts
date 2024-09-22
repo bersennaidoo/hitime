@@ -10,10 +10,6 @@ api.use(bodyParser.json())
 api.use(bodyParser.urlencoded({ extended: true }))
 api.use(cookieParser())
 
-
-//const router = Router();
-//router.get("/hello", (req, res) => res.send("Hello World!"));
-
 api.use("/api/", routes);
 
 export const handler = serverless(api);

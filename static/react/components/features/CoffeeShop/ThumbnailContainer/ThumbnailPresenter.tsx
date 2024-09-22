@@ -1,12 +1,6 @@
 import React, { FC } from "react";
 import Thumbnail from "../../../blocks/Thumbnail/Thumbnail";
 
-/*export type item = {
-  itemId: string;
-  imageId: string;
-  title: string;
-};*/
-
 interface IThumbnailPresenterProps {
   items: {
     itemId: string

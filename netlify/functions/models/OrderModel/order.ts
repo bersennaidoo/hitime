@@ -1,4 +1,4 @@
-import { Item } from "./item"
+import { Item } from "../ItemModel/item"
 
 export type Order = {
     id: number
