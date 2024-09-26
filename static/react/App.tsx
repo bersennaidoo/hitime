@@ -14,7 +14,7 @@ function App() {
   const [cart, dispatch] = useReducer(cartReducer, initialCartState)
   
   const addItem: CartTypes = { ADD: "ADD", REMOVE: "REMOVE" }
-  const addToCart = (itemId: any) => dispatch({type: addItem.ADD, itemId})
+  const addToCart = (itemId: any) => dispatch({type: addItem.ADD as string, itemId})
 
   useEffect(() => {
     axios
