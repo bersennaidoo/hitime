@@ -22,7 +22,7 @@
       "noEmit": true,
       "jsx": "react-jsx",
     },
-    "include": ["./cypress/**/*.spec.cy.ts", "./cypress/**/*.spec.cy.tsx", "./static/react/**/*.test.ts", "./static/react/**/*.test.tsx", "./static/react/data/interfaces.d.ts", "./node_modules/@testing-library/cypress/types/*.d.ts", "cypress", "cypress.config.ts", "static/react"],
+    "include": ["./cypress/**/*.spec.cy.ts", "./cypress/**/*.spec.cy.tsx", "./static/react/**/*.test.ts", "./static/react/**/*.test.tsx", "static/react/domain/interfaces.d.ts", "./node_modules/@testing-library/cypress/types/*.d.ts", "cypress", "cypress.config.ts", "static/react"],
     "exclude": ["node_modules/**/*.ts", "./public/js/**/*.ts"]
 
   }

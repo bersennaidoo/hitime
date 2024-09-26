@@ -18,7 +18,7 @@ const ThumbnailContainer: FC<IThumbnailContainerProps> = (
   const { items } = props;
 
   return (
-    <div className="home-component">
+    <div>
       <ThumbnailPresenter items={items} />
     </div>
   );

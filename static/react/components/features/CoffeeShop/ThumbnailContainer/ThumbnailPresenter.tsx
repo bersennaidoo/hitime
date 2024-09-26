@@ -18,9 +18,9 @@ const ThumbnailPresenter: FC<IThumbnailPresenterProps> = (
   const { items } = props;
 
   return (
-    <div>
+    <div className="home-component">
       {items.map((item) => (
-        <Thumbnail key={item.itemId} image={item.imageId} title={item.title} />
+        <Thumbnail key={item.itemId} image={item.imageId} title={item.title} itemId={item.itemId} />
       ))}
     </div>
   );

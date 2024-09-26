@@ -1,17 +1,39 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 
-const CoffeeLogo = "/images/30x22.png"
+const CoffeeLogo = "/images/coffee/coffee.svg";
+const CartIcon = "/images/coffee/cart.svg"
 
-interface IHeaderProps {}
+interface IHeaderProps {
+  cart: {
+    itemId?: string;
+    imageId?: string;
+    title?: string;
+    price?: number;
+    description?: string;
+    salePrice?: number;
+    quantity?: number
+  }[]
+}
 
 const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
-  const {} = props;
+  const { cart } = props;
+  const cartQuantity = cart.reduce((acc, item) => acc + item?.quantity!, 0)
 
   return (
-    <header data-cy="header" className="header-component">
-      <img src={CoffeeLogo} alt="coffee logo" />
-      <h1>Coffee Shop</h1>
-    </header>
+    <div data-cy="header" className="header-component">
+      <Link to="/coffeeshop">
+        <img src={CoffeeLogo} alt="coffee logo" />
+        <h1 className="pt-5 pe-5 pb-5 link-unstyled text-secondary">Coffee Shop</h1>
+      </Link>
+      <div className="menu">
+        <Link to="/coffeeshop/cart">
+          <img src={CartIcon} alt="Cart" />
+          <div className="badge">{cartQuantity}</div>
+        </Link>
+      </div>
+      <hr />
+    </div>
   );
 };
 

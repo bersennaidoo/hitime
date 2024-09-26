@@ -5,10 +5,10 @@ import type {
   VillainProperty,
   EntityType,
   EntityRoute,
-} from "../../static/react/data/types";
-import type { Hero } from "../../static/react/data/Hero";
-import type { Villain } from "../../static/react/data/Villain";
-import type { Boy } from "../../static/react/data/Boy";
+} from "../../static/react/domain/types";
+import type { Hero } from "../../static/react/domain/Hero";
+import type { Villain } from "../../static/react/domain/Villain";
+import type { Boy } from "../../static/react/domain/Boy";
 
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
