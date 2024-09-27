@@ -27882,7 +27882,7 @@
       detailItem.description && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h6", { children: detailItem.description }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { children: [
         "R",
-        (detailItem?.salePrice ?? detailItem?.price).toFixed(2)
+        (detailItem?.salePrice ? detailItem?.salePrice : detailItem?.price).toFixed(2)
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { type: "button", onClick: addItemToCart, children: "Add To Cart" })
     ] }) : /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("h2", { children: "Unknown Item" }) });
@@ -27907,11 +27907,11 @@
       dispatch({ type: cartType.SUBTRACT, itemId: item?.itemId });
     };
     return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("tr", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: cartItem.quantity }),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: cartItem?.quantity }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: item?.title }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("td", { children: [
         "R",
-        ((item?.salePrice ?? item?.price) * cartItem?.quantity).toFixed(2)
+        ((item?.salePrice ? item?.salePrice : item?.price) * cartItem?.quantity).toFixed(2)
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: addToCartFromCart, children: "+" }) }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: removeItemFromCart, children: "X" }) }),
@@ -27926,7 +27926,7 @@
     const { cart, items, dispatch } = props;
     const subTotal = cart.reduce((acc, item) => {
       const detailItem = items.find((i) => i.itemId === item.itemId);
-      const itemPrice = detailItem?.salePrice ?? detailItem?.price;
+      const itemPrice = detailItem?.salePrice ? detailItem?.salePrice : detailItem?.price;
       return item.quantity * itemPrice + acc;
     }, 0);
     return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "cart-component", children: [

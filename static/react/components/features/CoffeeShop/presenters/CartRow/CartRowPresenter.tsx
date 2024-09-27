@@ -34,10 +34,10 @@ const CartRowPresenter: FC<ICartRowPresenterProps> = (
 
   return (
     <tr>
-      <td>{cartItem.quantity}</td>
+      <td>{cartItem?.quantity}</td>
       <td>{item?.title}</td>
       <td>
-        R{((item?.salePrice ?? item?.price)! * cartItem?.quantity!).toFixed(2)}
+        R{((item?.salePrice ? item?.salePrice : item?.price)! * cartItem?.quantity!).toFixed(2)}
       </td>
       <td>
         <button type="button" onClick={addToCartFromCart}>+</button>

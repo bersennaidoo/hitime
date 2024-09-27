@@ -13,7 +13,7 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
 
   const subTotal = cart.reduce((acc, item) => {
     const detailItem = items.find((i) => i.itemId === item.itemId)
-    const itemPrice = detailItem?.salePrice ?? detailItem?.price
+    const itemPrice = (detailItem?.salePrice) ? detailItem?.salePrice : detailItem?.price
     return item.quantity! * itemPrice! + acc
   }, 0)
 

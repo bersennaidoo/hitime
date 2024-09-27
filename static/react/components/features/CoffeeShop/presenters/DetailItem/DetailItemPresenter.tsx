@@ -40,7 +40,7 @@ const DetailItemPresenter: FC<IDetailItemPresenterProps> = (
           <div>
             R
             {(
-              (detailItem?.salePrice as any) ?? (detailItem?.price as any)
+              (detailItem?.salePrice as any) ? (detailItem?.salePrice as any) : (detailItem?.price as any)
             ).toFixed(2)}
           </div>
           <button type="button" onClick={addItemToCart}>Add To Cart</button>
