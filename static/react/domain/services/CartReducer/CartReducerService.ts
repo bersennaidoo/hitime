@@ -24,9 +24,9 @@ export class CartReducerService {
       case this.cartTypes.SUBTRACT:
         if (this.findItem(state, action.itemId)) {
           return state.map((item) =>
-            item.itemId === action.itemId && item.quantity === 0
-              ? item
-              : { ...item, quantity: item?.quantity! - 1 }
+            item.itemId === action.itemId && item.quantity !== 0
+              ? { ...item, quantity: item?.quantity! - 1 }
+              : item
           );
         }
         return [...state, { itemId: action.itemId, quantity: 0 }];
