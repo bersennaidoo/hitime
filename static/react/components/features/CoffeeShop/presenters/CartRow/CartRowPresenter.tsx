@@ -1,6 +1,6 @@
 import React, { FC, Dispatch} from "react";
-import { Item } from "../../../../../domain/ItemModel/item";
-import { CartTypes } from "../../../../reducers/coffeeshop/cartReducer";
+import { Item } from "../../../../../domain/models/Cart/Item";
+import { CartTypes } from "../../../../../domain/models/Cart/CartTypes";
 
 interface ICartRowPresenterProps {
   items: Item[];
@@ -27,6 +27,11 @@ const CartRowPresenter: FC<ICartRowPresenterProps> = (
     dispatch({ type: cartType.ADD as string, itemId: item?.itemId})
   }
 
+  const substractFromCart = () => {
+    const cartType: CartTypes = { SUBTRACT: "SUBTRACT"}
+    dispatch({ type: cartType.SUBTRACT as string, itemId: item?.itemId})
+  }
+
   return (
     <tr>
       <td>{cartItem.quantity}</td>
@@ -39,6 +44,9 @@ const CartRowPresenter: FC<ICartRowPresenterProps> = (
       </td>
       <td>
         <button type="button" onClick={removeItemFromCart}>X</button>
+      </td>
+       <td>
+        <button type="button" onClick={substractFromCart}>-</button>
       </td>
     </tr>
   );

@@ -6,15 +6,21 @@ import ThumbnailContainer from "./components/features/CoffeeShop/ThumbnailContai
 import NotFound from "./components/blocks/NotFound/NotFound";
 import DetailsPresenter from "./components/features/CoffeeShop/presenters/Details/DetailsPresenter";
 import DetailItemPresenter from "./components/features/CoffeeShop/presenters/DetailItem/DetailItemPresenter";
-import { cartReducer, initialCartState, CartTypes } from "./components/reducers/coffeeshop/cartReducer";
+import { CartTypes } from "./domain/models/Cart/CartTypes";
 import CartPresenter from "./components/features/CoffeeShop/presenters/Cart/CartPresenter";
+import { CartReducerService } from "./domain/services/CartReducer/CartReducerService";
+import { CartModel } from "./domain/models/Cart/CartModel";
 
 function App() {
   const [items, setItems] = useState([]);
-  const [cart, dispatch] = useReducer(cartReducer, initialCartState)
+
+  const cartTypes: CartTypes = { ADD: "ADD", REMOVE: "REMOVE", SUBTRACT: "SUBTRACT" }
+  const cartReducerSrv: CartReducerService = new CartReducerService(cartTypes)
+  const cartModel: CartModel = new CartModel(cartReducerSrv)
+
+  const [cart, dispatch] = useReducer(cartModel.cartReducer, cartModel.initialCartState.items)
   
-  const addItem: CartTypes = { ADD: "ADD", REMOVE: "REMOVE" }
-  const addToCart = (itemId: any) => dispatch({type: addItem.ADD as string, itemId})
+  const addToCart = (itemId: any) => dispatch({type: cartTypes.ADD as string, itemId})
 
   useEffect(() => {
     axios

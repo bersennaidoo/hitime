@@ -1,5 +1,5 @@
 import React, { FC, Dispatch } from "react";
-import { Item } from "../../../../../domain/ItemModel/item";
+import { Item } from "../../../../../domain/models/Cart/Item";
 import CartRowPresenter from "../CartRow/CartRowPresenter";
 
 interface ICartPresenterProps {

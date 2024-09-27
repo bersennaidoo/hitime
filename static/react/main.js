@@ -27889,27 +27889,6 @@
   };
   var DetailItemPresenter_default = DetailItemPresenter;
 
-  // static/react/components/reducers/coffeeshop/cartReducer.ts
-  var initialCartState = [];
-  var cartTypes = { ADD: "ADD", REMOVE: "REMOVE" };
-  var findItem = (cart, itemId) => cart.find((item) => item.itemId === itemId);
-  var cartReducer = (state, action) => {
-    switch (action.type) {
-      case cartTypes.ADD:
-        if (findItem(state, action.itemId)) {
-          return state.map((item) => item.itemId === action.itemId ? { ...item, quantity: item?.quantity + 1 } : item);
-        }
-        return [
-          ...state,
-          { itemId: action.itemId, quantity: 1 }
-        ];
-      case cartTypes.REMOVE:
-        return state.filter((item) => item.itemId !== action.itemId);
-      default:
-        throw new Error(`Invalid action type ${action.type}`);
-    }
-  };
-
   // static/react/components/features/CoffeeShop/presenters/CartRow/CartRowPresenter.tsx
   var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   var CartRowPresenter = (props) => {
@@ -27923,6 +27902,10 @@
       const cartType = { ADD: "ADD" };
       dispatch({ type: cartType.ADD, itemId: item?.itemId });
     };
+    const substractFromCart = () => {
+      const cartType = { SUBTRACT: "SUBTRACT" };
+      dispatch({ type: cartType.SUBTRACT, itemId: item?.itemId });
+    };
     return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("tr", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: cartItem.quantity }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: item?.title }),
@@ -27931,7 +27914,8 @@
         ((item?.salePrice ?? item?.price) * cartItem?.quantity).toFixed(2)
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: addToCartFromCart, children: "+" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: removeItemFromCart, children: "X" }) })
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: removeItemFromCart, children: "X" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: substractFromCart, children: "-" }) })
     ] });
   };
   var CartRowPresenter_default = CartRowPresenter;
@@ -27973,13 +27957,60 @@
   };
   var CartPresenter_default = CartPresenter;
 
+  // static/react/domain/services/CartReducer/CartReducerService.ts
+  var CartReducerService = class {
+    constructor(cartTypes) {
+      this.cartTypes = cartTypes;
+    }
+    Reducer(state, action) {
+      switch (action.type) {
+        case this.cartTypes.ADD:
+          if (this.findItem(state, action.itemId)) {
+            return state.map(
+              (item) => item.itemId === action.itemId ? { ...item, quantity: item?.quantity + 1 } : item
+            );
+          }
+          return [...state, { itemId: action.itemId, quantity: 1 }];
+        case this.cartTypes.SUBTRACT:
+          if (this.findItem(state, action.itemId)) {
+            return state.map(
+              (item) => item.itemId === action.itemId && item.quantity === 0 ? item : { ...item, quantity: item?.quantity - 1 }
+            );
+          }
+          return [...state, { itemId: action.itemId, quantity: 0 }];
+        case this.cartTypes.REMOVE:
+          return state.filter((item) => item.itemId !== action.itemId);
+        default:
+          throw new Error(`Invalid action type ${action.type}`);
+      }
+    }
+    findItem(cart, itemId) {
+      return cart.find((item) => item.itemId === itemId);
+    }
+  };
+
+  // static/react/domain/models/Cart/CartModel.ts
+  var CartModel = class {
+    constructor(cartRedServ) {
+      this.cartReducer = (state, action) => {
+        const item = this.cartRedSrv.Reducer(state, action);
+        return item;
+      };
+      const items = [];
+      this.initialCartState = { items };
+      this.cartRedSrv = cartRedServ;
+    }
+  };
+
   // static/react/App.tsx
   var import_jsx_runtime10 = __toESM(require_jsx_runtime());
   function App() {
     const [items, setItems] = (0, import_react.useState)([]);
-    const [cart, dispatch] = (0, import_react.useReducer)(cartReducer, initialCartState);
-    const addItem = { ADD: "ADD", REMOVE: "REMOVE" };
-    const addToCart = (itemId) => dispatch({ type: addItem.ADD, itemId });
+    const cartTypes = { ADD: "ADD", REMOVE: "REMOVE", SUBTRACT: "SUBTRACT" };
+    const cartReducerSrv = new CartReducerService(cartTypes);
+    const cartModel = new CartModel(cartReducerSrv);
+    const [cart, dispatch] = (0, import_react.useReducer)(cartModel.cartReducer, cartModel.initialCartState.items);
+    const addToCart = (itemId) => dispatch({ type: cartTypes.ADD, itemId });
     (0, import_react.useEffect)(() => {
       import_axios.default.get("/api/items").then((result) => setItems(result.data)).catch(console.error);
     }, []);
