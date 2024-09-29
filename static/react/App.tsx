@@ -10,9 +10,21 @@ import { CartTypes } from "./domain/models/Cart/CartTypes";
 import CartPresenter from "./components/features/CoffeeShop/presenters/Cart/CartPresenter";
 import { CartReducerService } from "./domain/services/CartReducer/CartReducerService";
 import { CartModel } from "./domain/models/Cart/CartModel";
+import { CoffeeShopApiService } from "./domain/services/CoffeeShopApi/CoffeeShopApiService";
+import { CoffeeShopRouteService } from "./domain/services/CoffeeShopRoute/CoffeeShopRouteService";
+import { CoffeeShopModel } from "./domain/models/CoffeeShop/CoffeeShopModel";
+import { HookService } from "./domain/services/HookService/HookService";
+import { Item } from "./domain/models/CoffeeShop/Item"
 
 function App() {
-  const [items, setItems] = useState([]);
+   
+  // Create and Inject dependencies into CoffeeShopModel
+  const coffeeShopRouterSrv = new CoffeeShopRouteService()
+  const coffeeShopApiSrv = new CoffeeShopApiService()
+  const hookSrv = new HookService()
+  const coffeeShopModel = new CoffeeShopModel(coffeeShopApiSrv, coffeeShopRouterSrv, hookSrv)
+
+  const [items, setItems] = useState<Item[]>([]);
 
   const cartTypes: CartTypes = { ADD: "ADD", REMOVE: "REMOVE", SUBTRACT: "SUBTRACT" }
   const cartReducerSrv: CartReducerService = new CartReducerService(cartTypes)
@@ -22,11 +34,12 @@ function App() {
   
   const addToCart = (itemId: any) => dispatch({type: cartTypes.ADD as string, itemId})
 
+  // Ask Coffee Shop domain model to list its items and set app component state
   useEffect(() => {
-    axios
-      .get("/api/items")
-      .then((result) => setItems(result.data))
-      .catch(console.error);
+    const response = coffeeShopModel.listItems()
+    response.then((data) => {
+      setItems(data)
+    })
   }, []);
 
   if (items.length === 0) {
