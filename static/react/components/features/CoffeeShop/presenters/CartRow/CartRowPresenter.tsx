@@ -40,7 +40,7 @@ const CartRowPresenter: FC<ICartRowPresenterProps> = (
       <td>
         R
         {(
-          (item?.salePrice ? item?.salePrice : item?.price)! *
+          (Number(item?.salePrice) ? Number(item?.salePrice) : Number(item?.price))! *
           cartItem?.quantity!
         ).toFixed(2)}
       </td>

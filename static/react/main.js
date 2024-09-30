@@ -1093,7 +1093,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef3(initialValue) {
+          function useRef4(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
@@ -1887,7 +1887,7 @@
           exports.useLayoutEffect = useLayoutEffect3;
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer2;
-          exports.useRef = useRef3;
+          exports.useRef = useRef4;
           exports.useState = useState5;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
@@ -25792,21 +25792,21 @@
         utils.extend(instance, context);
         return instance;
       }
-      var axios2 = createInstance(defaults);
-      axios2.Axios = Axios;
-      axios2.create = function create(instanceConfig) {
-        return createInstance(mergeConfig(axios2.defaults, instanceConfig));
+      var axios3 = createInstance(defaults);
+      axios3.Axios = Axios;
+      axios3.create = function create(instanceConfig) {
+        return createInstance(mergeConfig(axios3.defaults, instanceConfig));
       };
-      axios2.Cancel = require_Cancel();
-      axios2.CancelToken = require_CancelToken();
-      axios2.isCancel = require_isCancel();
-      axios2.all = function all(promises) {
+      axios3.Cancel = require_Cancel();
+      axios3.CancelToken = require_CancelToken();
+      axios3.isCancel = require_isCancel();
+      axios3.all = function all(promises) {
         return Promise.all(promises);
       };
-      axios2.spread = require_spread();
-      axios2.isAxiosError = require_isAxiosError();
-      module.exports = axios2;
-      module.exports.default = axios2;
+      axios3.spread = require_spread();
+      axios3.isAxiosError = require_isAxiosError();
+      module.exports = axios3;
+      module.exports.default = axios3;
     }
   });
 
@@ -27952,7 +27952,7 @@
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: item?.title }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("td", { children: [
         "R",
-        ((item?.salePrice ? item?.salePrice : item?.price) * cartItem?.quantity).toFixed(2)
+        ((Number(item?.salePrice) ? Number(item?.salePrice) : Number(item?.price)) * cartItem?.quantity).toFixed(2)
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: addToCartFromCart, children: "+" }) }),
       /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("td", { children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("button", { type: "button", onClick: removeItemFromCart, children: "X" }) }),
@@ -27961,56 +27961,14 @@
   };
   var CartRowPresenter_default = CartRowPresenter;
 
-  // static/react/domain/models/CoffeeShop/CoffeeShopModel.ts
-  var CoffeeShopModel = class {
-    constructor(coffeeShopApiSrv, coffeeShopRouteSrv, hookSrv, taxSrv, coffeeShopFormatSrv) {
-      this.listItems = () => {
-        const listItemsRoute = this.coffeeShopRouteSrv.getListItemRoute();
-        const response = this.coffeeShopApiSrv.listItems(listItemsRoute);
-        return response;
-      };
-      // add a hero
-      this.addItem = (item) => {
-        const addItemRoute = this.coffeeShopRouteSrv.getAddItemRoute();
-        const itemAdded = this.coffeeShopApiSrv.addItem(addItemRoute, item);
-        return itemAdded;
-      };
-      // update a hero
-      this.updateItem = (id, item) => {
-        const updateHeroRoute = this.coffeeShopRouteSrv.getUpdateItemRoute(id);
-        const itemUpdated = this.coffeeShopApiSrv.updateItem(updateHeroRoute, item);
-        return itemUpdated;
-      };
-      this.getItemById = (id) => {
-        const singleItemRoute = this.coffeeShopRouteSrv.getItemByIdRoute(id);
-        const getItem = this.coffeeShopApiSrv.getItemById(singleItemRoute);
-        return getItem;
-      };
-      // delete a hero
-      this.deleteItem = (id) => {
-        const deleteItemRoute = this.coffeeShopRouteSrv.getDeleteItemRoute(id);
-        const deletedItem = this.coffeeShopApiSrv.deleteItem(deleteItemRoute);
-        return deletedItem;
-      };
-      this.coffeeShopApiSrv = coffeeShopApiSrv;
-      this.coffeeShopRouteSrv = coffeeShopRouteSrv;
-      this.hookSrv = hookSrv;
-      this.taxSrv = taxSrv;
-      this.coffeeShopFormatSrv = coffeeShopFormatSrv;
-    }
-  };
-
-  // static/react/domain/services/CoffeeShopTax/CoffeeShopTaxService.ts
-  var CoffeeShopTaxService = class {
+  // static/react/domain/services/HookService/HookService.ts
+  var HookService = class {
     constructor() {
-      this.calculateTax = (zipCode, subTotal) => {
-        const taxPercentage = parseInt(zipCode.substring(0, 1) || "0", 10) + 1;
-        const taxRate = taxPercentage / 100;
-        const tax = subTotal * taxRate;
-        return tax;
-      };
-      this.calculateTotal = (subTotal, tax) => {
-        return subTotal + tax;
+      this.useEntityParams = () => {
+        const [searchParams] = useSearchParams();
+        const name = searchParams.get("name");
+        const description = searchParams.get("description");
+        return { name, description };
       };
     }
   };
@@ -28077,14 +28035,17 @@
     }
   };
 
-  // static/react/domain/services/HookService/HookService.ts
-  var HookService = class {
+  // static/react/domain/services/CoffeeShopTax/CoffeeShopTaxService.ts
+  var CoffeeShopTaxService = class {
     constructor() {
-      this.useEntityParams = () => {
-        const [searchParams] = useSearchParams();
-        const name = searchParams.get("name");
-        const description = searchParams.get("description");
-        return { name, description };
+      this.calculateTax = (zipCode, subTotal) => {
+        const taxPercentage = parseInt(zipCode.substring(0, 1) || "0", 10) + 1;
+        const taxRate = taxPercentage / 100;
+        const tax = subTotal * taxRate;
+        return tax;
+      };
+      this.calculateTotal = (subTotal, tax) => {
+        return subTotal + tax;
       };
     }
   };
@@ -28110,7 +28071,70 @@
     }
   };
 
+  // static/react/domain/services/CoffeeShopWebStorage/CoffeeShopWebStorageService.ts
+  var CoffeeShopWebStorageService = class {
+    constructor() {
+      this.storageKey = "cart";
+      this.setItem = (items) => {
+        localStorage.setItem(this.storageKey, JSON.stringify(items));
+      };
+      this.getItem = () => {
+        const storedCart = JSON.parse(localStorage.getItem(this.storageKey));
+        return storedCart;
+      };
+    }
+  };
+
+  // static/react/domain/models/CoffeeShop/CoffeeShopModel.ts
+  var CoffeeShopModel = class {
+    // react depends on CoffeeShopModel
+    // CoffeeModel depends on CoffeeShopApiService, CoffeeShopRouteService HookService
+    /*public coffeeShopApiSrv: CoffeeShopApiService
+    public coffeeShopRouteSrv?: CoffeeShopRouteService
+    public hookSrv?: HookService
+    public taxSrv?: CoffeeShopTaxService
+    public coffeeShopFormatSrv?: CoffeeShopFormatService
+    public coffeeShopWebStorageSrv?: CoffeeShopWebStorageService*/
+    constructor(coffeeShopApiSrv = new CoffeeShopApiService(), coffeeShopRouteSrv = new CoffeeShopRouteService(), hookSrv = new HookService(), taxSrv = new CoffeeShopTaxService(), coffeeShopFormatSrv = new CoffeeShopFormatService(), coffeeShopWebStorageSrv = new CoffeeShopWebStorageService()) {
+      this.coffeeShopApiSrv = coffeeShopApiSrv;
+      this.coffeeShopRouteSrv = coffeeShopRouteSrv;
+      this.hookSrv = hookSrv;
+      this.taxSrv = taxSrv;
+      this.coffeeShopFormatSrv = coffeeShopFormatSrv;
+      this.coffeeShopWebStorageSrv = coffeeShopWebStorageSrv;
+      this.listItems = () => {
+        const listItemsRoute = this.coffeeShopRouteSrv.getListItemRoute();
+        const response = this.coffeeShopApiSrv.listItems(listItemsRoute);
+        return response;
+      };
+      // add a hero
+      this.addItem = (item) => {
+        const addItemRoute = this.coffeeShopRouteSrv.getAddItemRoute();
+        const itemAdded = this.coffeeShopApiSrv.addItem(addItemRoute, item);
+        return itemAdded;
+      };
+      // update a hero
+      this.updateItem = (id, item) => {
+        const updateHeroRoute = this.coffeeShopRouteSrv.getUpdateItemRoute(id);
+        const itemUpdated = this.coffeeShopApiSrv.updateItem(updateHeroRoute, item);
+        return itemUpdated;
+      };
+      this.getItemById = (id) => {
+        const singleItemRoute = this.coffeeShopRouteSrv.getItemByIdRoute(id);
+        const getItem = this.coffeeShopApiSrv.getItemById(singleItemRoute);
+        return getItem;
+      };
+      // delete a hero
+      this.deleteItem = (id) => {
+        const deleteItemRoute = this.coffeeShopRouteSrv.getDeleteItemRoute(id);
+        const deletedItem = this.coffeeShopApiSrv.deleteItem(deleteItemRoute);
+        return deletedItem;
+      };
+    }
+  };
+
   // static/react/components/features/CoffeeShop/presenters/Cart/CartPresenter.tsx
+  var import_axios2 = __toESM(require_axios2());
   var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   var CartPresenter = (props) => {
     const { cart, items, dispatch } = props;
@@ -28129,7 +28153,9 @@
     const [name, setName] = (0, import_react2.useState)("");
     const [zipcode, setZipCode] = (0, import_react2.useState)("");
     const [phone, setPhone] = (0, import_react2.useState)("");
-    const subTotal = cart.reduce((acc, item) => {
+    const [isEmployeeOfTheMonth, setIsEmployeeOfTheMonth] = (0, import_react2.useState)(false);
+    let debounceRef = (0, import_react2.useRef)(null);
+    const subTotal = isEmployeeOfTheMonth ? 0 : cart.reduce((acc, item) => {
       const detailItem = items.find((i) => i.itemId === item.itemId);
       const itemPrice = detailItem?.salePrice ? detailItem?.salePrice : detailItem?.price;
       return item.quantity * itemPrice + acc;
@@ -28140,14 +28166,24 @@
     const submitOrder = (event) => {
       event.preventDefault();
     };
-    const onChangeName = (event) => {
-      setName(event.target.value);
+    const onChangeName = (newName) => {
+      setName(newName);
+      if (debounceRef.current) {
+        clearTimeout(debounceRef.current);
+      }
+      debounceRef.current = setTimeout(() => {
+        import_axios2.default.get(`/api/isEmployeeOfTheMonth?name=${newName}`).then(
+          (response) => setIsEmployeeOfTheMonth(response?.data?.isEmployeeOfTheMonth)
+        ).catch(console.error);
+      }, 300);
     };
     const onChangeZipCode = (event) => {
       setZipCode(event.target.value);
     };
     const onChangePhone = (event) => {
-      const phoneFormatted = coffeeShopModel.coffeeShopFormatSrv.setFormattedPhone(event.target.value);
+      const phoneFormatted = coffeeShopModel.coffeeShopFormatSrv.setFormattedPhone(
+        event.target.value
+      );
       setPhone(phoneFormatted);
     };
     return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "cart-component", children: [
@@ -28193,7 +28229,7 @@
                 id: "name",
                 type: "text",
                 value: name,
-                onChange: onChangeName,
+                onChange: (event) => onChangeName(event.target.value),
                 required: true
               }
             )
@@ -28283,13 +28319,29 @@
     const coffeeShopRouterSrv = new CoffeeShopRouteService();
     const coffeeShopApiSrv = new CoffeeShopApiService();
     const hookSrv = new HookService();
+    const coffeeShopWebStorageSrv = new CoffeeShopWebStorageService();
     const coffeeShopModel = new CoffeeShopModel(coffeeShopApiSrv, coffeeShopRouterSrv, hookSrv);
     const [items, setItems] = (0, import_react3.useState)([]);
     const cartTypes = { ADD: "ADD", REMOVE: "REMOVE", SUBTRACT: "SUBTRACT" };
     const cartReducerSrv = new CartReducerService(cartTypes);
     const cartModel = new CartModel(cartReducerSrv);
-    const [cart, dispatch] = (0, import_react3.useReducer)(cartModel.cartReducer, cartModel.initialCartState.items);
+    const [cart, dispatch] = (0, import_react3.useReducer)(
+      cartModel.cartReducer,
+      cartModel.initialCartState.items,
+      (initialState) => {
+        try {
+          const storedCart = coffeeShopModel.coffeeShopWebStorageSrv.getItem();
+          return storedCart || initialState;
+        } catch (error) {
+          console.log("Error parsing cart", error);
+          return initialState;
+        }
+      }
+    );
     const addToCart = (itemId) => dispatch({ type: cartTypes.ADD, itemId });
+    (0, import_react3.useEffect)(() => {
+      coffeeShopModel.coffeeShopWebStorageSrv.setItem(cart);
+    }, [cart]);
     (0, import_react3.useEffect)(() => {
       const response = coffeeShopModel.listItems();
       response.then((data) => {

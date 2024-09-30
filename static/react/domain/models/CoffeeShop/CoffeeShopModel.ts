@@ -4,22 +4,25 @@ import { CoffeeShopRouteService } from "../../services/CoffeeShopRoute/CoffeeSho
 import { Item } from "./Item"
 import { CoffeeShopTaxService } from "../../services/CoffeeShopTax/CoffeeShopTaxService"
 import { CoffeeShopFormatService } from "../../services/CoffeeShopFormat/CoffeeShopFormatService"
+import { CoffeeShopWebStorageService } from "../../services/CoffeeShopWebStorage/CoffeeShopWebStorageService"
 
 export class CoffeeShopModel {
     // react depends on CoffeeShopModel
     // CoffeeModel depends on CoffeeShopApiService, CoffeeShopRouteService HookService
-    public coffeeShopApiSrv?: CoffeeShopApiService
+    /*public coffeeShopApiSrv: CoffeeShopApiService
     public coffeeShopRouteSrv?: CoffeeShopRouteService
     public hookSrv?: HookService
     public taxSrv?: CoffeeShopTaxService
     public coffeeShopFormatSrv?: CoffeeShopFormatService
+    public coffeeShopWebStorageSrv?: CoffeeShopWebStorageService*/
 
-    constructor(coffeeShopApiSrv?: CoffeeShopApiService, coffeeShopRouteSrv?: CoffeeShopRouteService, hookSrv?: HookService, taxSrv?: CoffeeShopTaxService, coffeeShopFormatSrv?: CoffeeShopFormatService) {
-        this.coffeeShopApiSrv = coffeeShopApiSrv
+    constructor(public coffeeShopApiSrv: CoffeeShopApiService = new CoffeeShopApiService(), public coffeeShopRouteSrv: CoffeeShopRouteService = new CoffeeShopRouteService(), public hookSrv: HookService = new HookService(), public taxSrv: CoffeeShopTaxService = new CoffeeShopTaxService(), public coffeeShopFormatSrv: CoffeeShopFormatService = new CoffeeShopFormatService(), public coffeeShopWebStorageSrv: CoffeeShopWebStorageService = new CoffeeShopWebStorageService()) {
+        /*this.coffeeShopApiSrv = coffeeShopApiSrv
         this.coffeeShopRouteSrv = coffeeShopRouteSrv
         this.hookSrv = hookSrv
         this.taxSrv = taxSrv
         this.coffeeShopFormatSrv = coffeeShopFormatSrv
+        this.coffeeShopWebStorageSrv = coffeeShopWebStorageSrv*/
     }
 
     public listItems = () => {

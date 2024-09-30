@@ -1,18 +1,21 @@
 import React, { FC, Dispatch } from "react";
 import { useParams } from "react-router-dom";
-import { CartTypes } from "../../../../reducers/coffeeshop/cartReducer";
+import { Item } from "../../../../../domain/models/Cart/Item";
+//import { CartTypes } from "../../../../reducers/coffeeshop/cartReducer";
 
 interface IDetailItemPresenterProps {
   items: {
     itemId: string;
     imageId: string;
     title: string;
-    price: number;
+    price: string;
     description: string;
-    salePrice: number;
+    salePrice: string;
   }[];
   addToCart: (itemId: any) => void;
 }
+
+
 
 const DetailItemPresenter: FC<IDetailItemPresenterProps> = (
   props: IDetailItemPresenterProps

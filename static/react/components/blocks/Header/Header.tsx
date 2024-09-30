@@ -1,20 +1,26 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
+import { Item } from "../../../domain/models/Cart/Item";
 
 const CoffeeLogo = "/images/coffee/coffee.svg";
 const CartIcon = "/images/coffee/cart.svg"
 
-interface IHeaderProps {
+/*interface IHeaderProps {
   cart: {
     itemId?: string;
     imageId?: string;
     title?: string;
-    price?: number;
+    price?: string;
     description?: string;
-    salePrice?: number;
+    salePrice?: string;
     quantity?: number
   }[]
+}*/
+
+interface IHeaderProps {
+  cart: Item[]
 }
+
 
 const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
   const { cart } = props;

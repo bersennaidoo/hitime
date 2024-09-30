@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, useState } from "react";
+import React, { FC, Dispatch, useState, useRef } from "react";
 import { Item } from "../../../../../domain/models/Cart/Item";
 import CartRowPresenter from "../CartRow/CartRowPresenter";
 import { CoffeeShopModel } from "../../../../../domain/models/CoffeeShop/CoffeeShopModel";
@@ -7,6 +7,7 @@ import { CoffeeShopApiService } from "../../../../../domain/services/CoffeeShopA
 import { CoffeeShopRouteService } from "../../../../../domain/services/CoffeeShopRoute/CoffeeShopRouteService";
 import { HookService } from "../../../../../domain/services/HookService/HookService";
 import { CoffeeShopFormatService } from "../../../../../domain/services/CoffeeShopFormat/CoffeeShopFormatService";
+import axios from "axios";
 
 interface ICartPresenterProps {
   cart: Item[];
@@ -21,7 +22,7 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
   const coffeeShopRouterSrv = new CoffeeShopRouteService();
   const hookSrv = new HookService();
   const coffeeShopTaxSrv = new CoffeeShopTaxService();
-  const coffeeShopFormatSrv = new CoffeeShopFormatService()
+  const coffeeShopFormatSrv = new CoffeeShopFormatService();
   const coffeeShopModel = new CoffeeShopModel(
     coffeeShopApiSrv,
     coffeeShopRouterSrv,
@@ -33,26 +34,45 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
   const [name, setName] = useState<string>("");
   const [zipcode, setZipCode] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
+  const [isEmployeeOfTheMonth, setIsEmployeeOfTheMonth] =
+    useState<boolean>(false);
+  let debounceRef = useRef<any>(null)
 
-  const subTotal = cart.reduce((acc, item) => {
-    const detailItem = items.find((i) => i.itemId === item.itemId);
-    const itemPrice = detailItem?.salePrice
-      ? detailItem?.salePrice
-      : detailItem?.price;
-    return item.quantity! * itemPrice! + acc;
-  }, 0);
-
+  const subTotal = isEmployeeOfTheMonth
+    ? 0
+    : cart.reduce((acc, item) => {
+        const detailItem = items.find((i) => i.itemId === item.itemId);
+        const itemPrice: any = detailItem?.salePrice
+          ? detailItem?.salePrice
+          : detailItem?.price;
+        return ((item.quantity! * itemPrice!) as any) + acc;
+      }, 0);
   const tax = coffeeShopModel.taxSrv!.calculateTax(zipcode, subTotal);
   const total = coffeeShopModel.taxSrv!.calculateTotal(subTotal, tax);
 
-  const isFormValid = zipcode.length === 5 && name.trim()
+  const isFormValid = zipcode.length === 5 && name.trim();
 
   const submitOrder = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
-  const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  /*const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
+  };*/
+
+  const onChangeName = (newName: string) => {
+    setName(newName);
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current as any)
+    }
+    debounceRef.current = setTimeout(() => {
+      axios
+        .get(`/api/isEmployeeOfTheMonth?name=${newName}`)
+        .then((response) =>
+          setIsEmployeeOfTheMonth(response?.data?.isEmployeeOfTheMonth)
+        )
+        .catch(console.error);
+    }, 300);
   };
 
   const onChangeZipCode = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +80,11 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
   };
 
   const onChangePhone = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const phoneFormatted = coffeeShopModel.coffeeShopFormatSrv!.setFormattedPhone(event.target.value)
-    setPhone(phoneFormatted)
+    const phoneFormatted =
+      coffeeShopModel.coffeeShopFormatSrv!.setFormattedPhone(
+        event.target.value
+      );
+    setPhone(phoneFormatted);
   };
 
   return (
@@ -108,7 +131,7 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
                 id="name"
                 type="text"
                 value={name}
-                onChange={onChangeName}
+                onChange={(event) => onChangeName(event.target.value)}
                 required={true}
               />
             </label>
@@ -133,7 +156,9 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
                 required={true}
               />
             </label>
-            <button type="submit" disabled={!isFormValid}>Order Now</button>
+            <button type="submit" disabled={!isFormValid}>
+              Order Now
+            </button>
           </form>
         </>
       )}

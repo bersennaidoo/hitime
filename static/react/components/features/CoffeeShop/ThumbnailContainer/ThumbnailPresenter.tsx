@@ -6,9 +6,9 @@ interface IThumbnailPresenterProps {
     itemId: string
     imageId: string
     title: string
-    price: number
+    price: string
     description: string
-    salePrice: number
+    salePrice: string
   }[]
 }
 

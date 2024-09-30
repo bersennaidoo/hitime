@@ -15,6 +15,7 @@ import { CoffeeShopRouteService } from "./domain/services/CoffeeShopRoute/Coffee
 import { CoffeeShopModel } from "./domain/models/CoffeeShop/CoffeeShopModel";
 import { HookService } from "./domain/services/HookService/HookService";
 import { Item } from "./domain/models/CoffeeShop/Item"
+import { CoffeeShopWebStorageService } from "./domain/services/CoffeeShopWebStorage/CoffeeShopWebStorageService";
 
 function App() {
    
@@ -22,6 +23,7 @@ function App() {
   const coffeeShopRouterSrv = new CoffeeShopRouteService()
   const coffeeShopApiSrv = new CoffeeShopApiService()
   const hookSrv = new HookService()
+  const coffeeShopWebStorageSrv = new CoffeeShopWebStorageService()
   const coffeeShopModel = new CoffeeShopModel(coffeeShopApiSrv, coffeeShopRouterSrv, hookSrv)
 
   const [items, setItems] = useState<Item[]>([]);
@@ -30,9 +32,24 @@ function App() {
   const cartReducerSrv: CartReducerService = new CartReducerService(cartTypes)
   const cartModel: CartModel = new CartModel(cartReducerSrv)
 
-  const [cart, dispatch] = useReducer(cartModel.cartReducer, cartModel.initialCartState.items)
+  //const [cart, dispatch] = useReducer(cartModel.cartReducer, cartModel.initialCartState.items)
+  const [cart, dispatch] = useReducer(
+    cartModel.cartReducer, cartModel.initialCartState.items, (initialState) => {
+      try {
+        const storedCart = coffeeShopModel.coffeeShopWebStorageSrv.getItem()
+        return storedCart || initialState
+      } catch (error) {
+        console.log("Error parsing cart", error)
+        return initialState
+      }
+    }
+  )
   
   const addToCart = (itemId: any) => dispatch({type: cartTypes.ADD as string, itemId})
+
+  useEffect(() => {
+    coffeeShopModel.coffeeShopWebStorageSrv!.setItem(cart)
+  }, [cart])
 
   // Ask Coffee Shop domain model to list its items and set app component state
   useEffect(() => {
