@@ -2,12 +2,14 @@ import { zip } from "ramda";
 import { Validator } from "../../interfaces/validator";
 import { Storer } from "../../interfaces/storer";
 import { Order } from "./order";
+import { StoreService } from "../../services/StoreService/storeService";
+import { ValidatorService } from "../../services/ValidatorService/validatorService";
 
-export class OrderModel implements Storer {
-  validator: Validator;
-  storer: Storer;
+export class OrderModel {
+  public validator: ValidatorService;
+  public storer: StoreService;
 
-  constructor(validator: Validator, storer: Storer) {
+  constructor(validator: ValidatorService, storer: StoreService) {
     this.validator = validator;
     this.storer = storer;
   }
@@ -16,10 +18,10 @@ export class OrderModel implements Storer {
     | { success: boolean }
     | { success: boolean; error: string; valid: boolean } {
 
-    const result = this.validator.validateOrder(order)
+    /*const result = this.validator.validateOrder(order)
     if (!result.valid) {
       return { success: false, ...result}
-    }
+    }*/
 
     const created = this.storer.createOrder(order)
 

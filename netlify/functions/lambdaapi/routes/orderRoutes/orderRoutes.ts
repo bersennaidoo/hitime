@@ -11,6 +11,7 @@ export class OrderRoutes {
         this.ohandler = ohandler
 
          this.router.route("/")
+          .get(this.ohandler.getOrders)
           .post(this.ohandler.addOrder)
     }
 }

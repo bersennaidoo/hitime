@@ -8,6 +8,7 @@ import { CoffeeShopRouteService } from "../../../../../domain/services/CoffeeSho
 import { HookService } from "../../../../../domain/services/HookService/HookService";
 import { CoffeeShopFormatService } from "../../../../../domain/services/CoffeeShopFormat/CoffeeShopFormatService";
 import axios from "axios";
+import { Order } from "../../../../../domain/models/CoffeeShop/Order";
 
 interface ICartPresenterProps {
   cart: Item[];
@@ -36,6 +37,7 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
   const [phone, setPhone] = useState<string>("");
   const [isEmployeeOfTheMonth, setIsEmployeeOfTheMonth] =
     useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState(false)
   let debounceRef = useRef<any>(null)
 
   const subTotal = isEmployeeOfTheMonth
@@ -52,8 +54,19 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
 
   const isFormValid = zipcode.length === 5 && name.trim();
 
-  const submitOrder = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitOrder = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setIsSubmitting(true)
+    const order: Order = {name: name, phone: phone, zipCode: zipcode, items: cart}
+    //coffeeShopModel.createOrder(order)
+    try {
+      await axios.post("/api/orders", order)
+      console.log("Order Submitted")
+    } catch (error) {
+      console.error("Error submitting the order", error)
+    } finally {
+      setIsSubmitting(false)
+    }
   };
 
   /*const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -156,7 +169,7 @@ const CartPresenter: FC<ICartPresenterProps> = (props: ICartPresenterProps) => {
                 required={true}
               />
             </label>
-            <button type="submit" disabled={!isFormValid}>
+            <button type="submit" disabled={!isFormValid || isSubmitting}>
               Order Now
             </button>
           </form>

@@ -1,11 +1,17 @@
 import { useCallback } from "react";
 import { Item } from "../../models/CoffeeShop/Item";
+import { Order } from "../../models/CoffeeShop/Order";
 import axios, { AxiosResponse } from "axios";
 
 export class CoffeeShopApiService {
 
-  public listItems = (route: string) => {
+  public createOrder = (route: string, order: Order) => {
+    const response = this.createData(route, order);
 
+    return response;
+  };
+
+  public listItems = (route: string) => {
     const response = this.getData(route);
 
     return response;
@@ -46,6 +52,11 @@ export class CoffeeShopApiService {
 
   private getData = useCallback(async (route: string) => {
     const promise = await axios.get(route);
+    return this.parseList(promise);
+  }, []);
+
+  private createData = useCallback(async (route: string, order: Order) => {
+    const promise = await axios.post(route, order);
     return this.parseList(promise);
   }, []);
 }

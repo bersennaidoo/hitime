@@ -3,14 +3,14 @@ import { Order } from "../../models/OrderModel/order"
 
 export class StoreService implements Storer {
 
-    orders: Order[]
-
-    constructor(orders: Order[]) {
-        this.orders = orders
-    }
+    orders: Order[] = []
+    orderId = 0
 
     public createOrder(order: Order): { success: boolean } | { success: boolean, error: string, valid: boolean} {
 
+        this.orderId += 1
+
+        order.id = this.orderId
         this.orders.push(order)
 
         return { success: true}

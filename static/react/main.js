@@ -27978,6 +27978,10 @@
   var import_axios = __toESM(require_axios2());
   var CoffeeShopApiService = class {
     constructor() {
+      this.createOrder = (route, order) => {
+        const response = this.createData(route, order);
+        return response;
+      };
       this.listItems = (route) => {
         const response = this.getData(route);
         return response;
@@ -28005,6 +28009,10 @@
         const promise = await import_axios.default.get(route);
         return this.parseList(promise);
       }, []);
+      this.createData = (0, import_react.useCallback)(async (route, order) => {
+        const promise = await import_axios.default.post(route, order);
+        return this.parseList(promise);
+      }, []);
     }
   };
 
@@ -28017,6 +28025,10 @@
       this.getItemById = `/api/items`;
       this.updateItem = `/api/items`;
       this.deleteItem = `/api/items`;
+      this.createOrder = "/api/orders";
+      this.getOrderRoute = () => {
+        return this.createOrder;
+      };
       this.getDeleteItemRoute = (id) => {
         return this.deleteItem + `/${id}`;
       };
@@ -28102,6 +28114,11 @@
       this.taxSrv = taxSrv;
       this.coffeeShopFormatSrv = coffeeShopFormatSrv;
       this.coffeeShopWebStorageSrv = coffeeShopWebStorageSrv;
+      this.createOrder = (order) => {
+        const orderRoute = this.coffeeShopRouteSrv.getOrderRoute();
+        const response = this.coffeeShopApiSrv.createOrder(orderRoute, order);
+        return response;
+      };
       this.listItems = () => {
         const listItemsRoute = this.coffeeShopRouteSrv.getListItemRoute();
         const response = this.coffeeShopApiSrv.listItems(listItemsRoute);
@@ -28154,6 +28171,7 @@
     const [zipcode, setZipCode] = (0, import_react2.useState)("");
     const [phone, setPhone] = (0, import_react2.useState)("");
     const [isEmployeeOfTheMonth, setIsEmployeeOfTheMonth] = (0, import_react2.useState)(false);
+    const [isSubmitting, setIsSubmitting] = (0, import_react2.useState)(false);
     let debounceRef = (0, import_react2.useRef)(null);
     const subTotal = isEmployeeOfTheMonth ? 0 : cart.reduce((acc, item) => {
       const detailItem = items.find((i) => i.itemId === item.itemId);
@@ -28163,8 +28181,18 @@
     const tax = coffeeShopModel.taxSrv.calculateTax(zipcode, subTotal);
     const total = coffeeShopModel.taxSrv.calculateTotal(subTotal, tax);
     const isFormValid = zipcode.length === 5 && name.trim();
-    const submitOrder = (event) => {
+    const submitOrder = async (event) => {
       event.preventDefault();
+      setIsSubmitting(true);
+      const order = { name, phone, zipCode: zipcode, items: cart };
+      try {
+        await import_axios2.default.post("/api/orders", order);
+        console.log("Order Submitted");
+      } catch (error) {
+        console.error("Error submitting the order", error);
+      } finally {
+        setIsSubmitting(false);
+      }
     };
     const onChangeName = (newName) => {
       setName(newName);
@@ -28261,7 +28289,7 @@
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "submit", disabled: !isFormValid, children: "Order Now" })
+          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("button", { type: "submit", disabled: !isFormValid || isSubmitting, children: "Order Now" })
         ] })
       ] })
     ] });

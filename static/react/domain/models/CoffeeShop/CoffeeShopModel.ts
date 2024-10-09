@@ -2,6 +2,7 @@ import { HookService } from "../../services/HookService/HookService"
 import { CoffeeShopApiService } from "../../services/CoffeeShopApi/CoffeeShopApiService"
 import { CoffeeShopRouteService } from "../../services/CoffeeShopRoute/CoffeeShopRouteService"
 import { Item } from "./Item"
+import { Order } from "./Order"
 import { CoffeeShopTaxService } from "../../services/CoffeeShopTax/CoffeeShopTaxService"
 import { CoffeeShopFormatService } from "../../services/CoffeeShopFormat/CoffeeShopFormatService"
 import { CoffeeShopWebStorageService } from "../../services/CoffeeShopWebStorage/CoffeeShopWebStorageService"
@@ -24,6 +25,13 @@ export class CoffeeShopModel {
         this.coffeeShopFormatSrv = coffeeShopFormatSrv
         this.coffeeShopWebStorageSrv = coffeeShopWebStorageSrv*/
     }
+
+     public createOrder = (order: Order) => {
+        const orderRoute = this.coffeeShopRouteSrv!.getOrderRoute()
+        const response = this.coffeeShopApiSrv!.createOrder(orderRoute, order)
+        return response
+    }
+
 
     public listItems = () => {
         const listItemsRoute = this.coffeeShopRouteSrv!.getListItemRoute()

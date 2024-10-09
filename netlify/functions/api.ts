@@ -9,10 +9,20 @@ import { ItemsHandlers } from "./lambdaapi/handlers/itemsHandlers/itemsHandlers"
 import { ItemsRoutes } from "./lambdaapi/routes/itemsRoutes/itemsRoutes";
 import { EmployeeRoutes } from "./lambdaapi/routes/employeeRoutes/employeeRoutes";
 import { EmployeeHandlers } from "./lambdaapi/handlers/employeeHandlers/employeeHandlers";
+import { OrderModel } from "./domain/models/OrderModel/orderModel";
+import { StoreService } from "./domain/services/StoreService/storeService";
+import { ValidatorService } from "./domain/services/ValidatorService/validatorService";
 
 const app = express();
 
-const ohandler = new OrderHandlers()
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cookieParser())
+
+const vsvc = new ValidatorService()
+const ssvc = new StoreService()
+let omodel: OrderModel = new OrderModel(vsvc, ssvc)
+const ohandler = new OrderHandlers(omodel)
 const orouter = new OrderRoutes(Router(), ohandler)
 const ihandler = new ItemsHandlers()
 const itrouter = new ItemsRoutes(Router(), ihandler)
@@ -20,9 +30,7 @@ const ehandler = new EmployeeHandlers()
 const erouter = new EmployeeRoutes(Router(), ehandler)
 const irouter = new Index(orouter, itrouter, erouter, Router())
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
+
 
 app.use("/api/", irouter.router);
 

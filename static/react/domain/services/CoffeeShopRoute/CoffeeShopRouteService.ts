@@ -6,6 +6,12 @@ export class CoffeeShopRouteService {
     public getItemById = `/api/items`
     public updateItem = `/api/items`
     public deleteItem = `/api/items`
+    public createOrder = "/api/orders"
+
+    public getOrderRoute = () => {
+
+        return this.createOrder
+    }
 
     public getDeleteItemRoute = (id: string) => {
         return this.deleteItem + `/${id}`
