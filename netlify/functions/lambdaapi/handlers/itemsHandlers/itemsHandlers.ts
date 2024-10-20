@@ -73,4 +73,9 @@ export class ItemsHandlers {
       500
     );
   }
+
+  public addItems(req: Request, res: Response) {
+
+    res.status(201).json(req.body)
+  }
 }

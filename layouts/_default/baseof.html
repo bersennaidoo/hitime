@@ -3,15 +3,12 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body>
-  <header>
+<body style="padding: 0;">
+  <div id="layout-container" class="m-container">
     {{ partial "header.html" . }}
-  </header>
-  <main>
+    {{ partial "nav/navp.html" . }}
     {{ block "main" . }}{{ end }}
-  </main>
-  <footer>
-    {{ partial "footer.html" . }}
-  </footer>
+    {{ partial "footer/footerp.html" . }}
+  </div>
 </body>
 </html>

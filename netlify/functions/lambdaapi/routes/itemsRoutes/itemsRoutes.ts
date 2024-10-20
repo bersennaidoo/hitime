@@ -12,5 +12,6 @@ export class ItemsRoutes {
 
          this.router.route("/")
           .get(this.ihandler.getItems)
+          .post(this.ihandler.addItems)
     }
 }

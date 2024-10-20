@@ -16,6 +16,7 @@ import { CoffeeShopModel } from "./domain/models/CoffeeShop/CoffeeShopModel";
 import { HookService } from "./domain/services/HookService/HookService";
 import { Item } from "./domain/models/CoffeeShop/Item"
 import { CoffeeShopWebStorageService } from "./domain/services/CoffeeShopWebStorage/CoffeeShopWebStorageService";
+import AccordionPattern from "./components/AccordionPattern/AccordionPattern";
 
 function App() {
    
@@ -64,7 +65,9 @@ function App() {
   }
 
   return (
-    <div className="pt-5 mt-5">
+    <div className="pt-5 mt-5 layout-container">
+      <div style={{ paddingLeft: "300px"}}>
+      </div>
       <BrowserRouter>
         <Header cart={cart}/>
         <Routes>

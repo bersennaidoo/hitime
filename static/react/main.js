@@ -2384,9 +2384,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React6 = require_react();
+          var React5 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3993,7 +3993,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React6.Children.forEach(props.children, function(child) {
+                  React5.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -23589,7 +23589,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React6 = require_react();
+          var React5 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23615,7 +23615,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -25818,7 +25818,6 @@
   });
 
   // static/react/main.tsx
-  var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // static/react/App.tsx
@@ -28379,40 +28378,41 @@
     if (items.length === 0) {
       return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "Loading..." });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "pt-5 mt-5", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(BrowserRouter, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Header_default, { cart }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Routes, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "/coffeeshop/cart", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(CartPresenter_default, { cart, dispatch, items }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
-          Route,
-          {
-            path: "/coffeeshop/details",
-            element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DetailsPresenter_default, { items }),
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: ":id", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DetailItemPresenter_default, { items, addToCart }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { index: true, element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "No Item Selected" }) })
-            ]
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
-          Route,
-          {
-            path: "/coffeeshop",
-            element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ThumbnailContainer_default, { items })
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "*", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(NotFound_default, {}) })
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "pt-5 mt-5 layout-container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: { paddingLeft: "300px" } }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(BrowserRouter, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Header_default, { cart }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Routes, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "/coffeeshop/cart", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(CartPresenter_default, { cart, dispatch, items }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+            Route,
+            {
+              path: "/coffeeshop/details",
+              element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DetailsPresenter_default, { items }),
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: ":id", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(DetailItemPresenter_default, { items, addToCart }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { index: true, element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "No Item Selected" }) })
+              ]
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+            Route,
+            {
+              path: "/coffeeshop",
+              element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(ThumbnailContainer_default, { items })
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "*", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(NotFound_default, {}) })
+        ] })
       ] })
-    ] }) });
+    ] });
   }
   var App_default = App;
 
   // static/react/main.tsx
   var import_jsx_runtime11 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
-  root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_react4.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(App_default, {}) })
-  );
+  root.render(/* @__PURE__ */ (0, import_jsx_runtime11.jsx)(App_default, {}));
 })();
 /*! Bundled license information:
 

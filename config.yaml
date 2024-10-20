@@ -45,6 +45,10 @@ menus:
       name: "CoffeeShop"
       url: "/coffeeshop"
       weight: 300
+    - indentifier: "Marketing"
+      name: Marketing
+      url: /marketing
+      weight: 400
 
   footer:
     - identifier: "About"
