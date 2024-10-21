@@ -1,0 +1,9 @@
+.m-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    //grid-template-rows: repeat(4, 1fr);
+    inline-size: 100%;
+    padding: 10px;
+    margin-inline: auto;
+    margin-block: 0;
+}

@@ -10263,7 +10263,7 @@ textarea.form-control-lg {
     display: none !important; } }
 
 body {
-  padding-block-start: 80px; }
+  background-color: #f2f2f2; }
 
 .layout-container .header-component {
   display: flex;
@@ -10573,3 +10573,22 @@ body {
     padding: 0 50px; }
   .layout-container .cart-component input {
     width: 50%; } }
+
+.c-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  margin-block-end: 40px; }
+  .c-header__info {
+    flex: 1 1 25%; }
+  .c-header__nav {
+    flex: 1 1 75%;
+    padding-block-start: 100px; }
+  .c-header__heading {
+    text-align: center;
+    font-size: 25px; }
+
+.m-container {
+  inline-size: 80%;
+  margin-inline: auto;
+  margin-block: 0; }

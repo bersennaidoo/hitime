@@ -1,0 +1,18 @@
+.c-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    margin-block-end: 40px;
+
+    &__info {
+        flex: 1 1 25%;
+    }
+    &__nav {
+        flex: 1 1 75%;
+        padding-block-start: 100px;
+    }
+    &__heading {
+        text-align: center;
+        font-size: $h1-font-size;
+    }
+}

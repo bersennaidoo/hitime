@@ -1,0 +1,31 @@
+.c-headerp {
+    grid-column: 1 / 7;
+    display: flex;
+    gap: 150px;
+    margin-block-end: 50px;
+    &__info {
+        flex: 33%;
+    }
+    &__nav {
+        flex: 67%;
+    }
+    &__list {
+        display: flex;
+        padding-block-start: 40px;
+        list-style-type: none;
+    }
+    &__link {
+        display: block;
+        padding: 0.5em 1em;
+        color: $body-color;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    &__heading {
+        font-size: 28px;
+    }
+    &__logo {
+        max-inline-size: 100%;
+        display: block;
+    }
+}
