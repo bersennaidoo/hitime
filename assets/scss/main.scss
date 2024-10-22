@@ -7,9 +7,12 @@
 @import "globals/globals";
 
 // components
-@import "components/coffeeshop/layout-container";
 @import "components/hitime-fitness/m-container";
 @import "components/hitime-fitness/c-header";
 @import "components/hitime-fitness/c-home";
 @import "components/hitime-fitness/c-footerp";
 @import "components/hitime-fitness/c-herop";
+@import "components/hitime-fitness/c-aboutp";
+@import "components/hitime-fitness/c-contactp";
+// coffeeshop
+@import "components/coffeeshop/layout-container";

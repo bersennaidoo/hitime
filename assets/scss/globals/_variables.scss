@@ -1,12 +1,15 @@
 // Typography
 $font-family-base: "Roboto", sans-serif;
-$font-size-base: 1.125rem;
+$font-size-base: 100%;
 $line-height-base: 1.3;
-$h1-font-size: 2.027 * $font-size-base;
-$h2-font-size: 1.802 * $font-size-base;
-$h3-font-size: 1.602 * $font-size-base;
-$h4-font-size: 1.424 * $font-size-base;
-$h5-font-size: 1.266 * $font-size-base;
-$h6-font-size: 1.125 * $font-size-base;
-$p-font-size: $font-size-base;
-$spacing: $font-size-base * 1.8;
+$h1-font-size: 2.027rem;
+$h2-font-size: 1.802rem;
+$h3-font-size: 1.602rem;
+$h4-font-size: 1.424rem;
+$h5-font-size: 1.266rem;
+$h6-font-size: 1.125rem;
+$link-font-size: 1.266rem;
+$primary-font-size: 1.035rem;
+$primary-cta-size: 1.425rem;
+$secondary-font-size: 1rem;
+$spacing: 1rem;

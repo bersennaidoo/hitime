@@ -1,3 +1,7 @@
 .c-herop {
     grid-column: 1 / 7;
+    padding-block-start: $spacing * 12;
+    &__img {
+        max-width: 100%;
+    }
 }

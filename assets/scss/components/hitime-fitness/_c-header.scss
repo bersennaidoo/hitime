@@ -1,31 +1,40 @@
 .c-headerp {
     grid-column: 1 / 7;
     display: flex;
-    gap: 150px;
-    margin-block-end: 50px;
+    position: fixed;
+    gap: $spacing * 8;
+    margin-block-end: $spacing * 3;
     &__info {
-        flex: 33%;
+        flex: 30%;
+        padding-block-start: $spacing * 2.5;
     }
     &__nav {
-        flex: 67%;
+        flex: 70%;
     }
     &__list {
         display: flex;
-        padding-block-start: 40px;
+        padding-block-start: $spacing * 3;
         list-style-type: none;
+    }
+    &__item {
+        flex: 1 1 auto;
     }
     &__link {
         display: block;
-        padding: 0.5em 1em;
-        color: $body-color;
-        font-size: 18px;
+        padding: ($spacing / 2) ($spacing);
+        color: $white;
+        font-size: $link-font-size;
         text-decoration: none;
     }
     &__heading {
-        font-size: 28px;
+        font-size: $h1-font-size;
     }
     &__logo {
         max-inline-size: 100%;
+        background-color: $primary;
         display: block;
+        border: 1px solid black;
+        padding: $spacing * 0.8;
+        border-radius: $spacing * 10;
     }
 }

@@ -28378,7 +28378,7 @@
     if (items.length === 0) {
       return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: "Loading..." });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "pt-5 mt-5 layout-container", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "pt-5 mt-5", children: [
       /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: { paddingLeft: "300px" } }),
       /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(BrowserRouter, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Header_default, { cart }),

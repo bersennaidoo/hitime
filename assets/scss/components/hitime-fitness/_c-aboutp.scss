@@ -1,0 +1,37 @@
+.c-aboutp {
+    grid-column: 1 / 7;
+
+    &__weights {
+        inline-size: 29%;
+        float: left;
+        margin: 0 2%;
+    }
+     &__cardio {
+        inline-size: 29%;
+        float: left;
+        margin: 0 2%;
+    }
+     &__training {
+        inline-size: 29%;
+        float: left;
+        margin: 0 2%;
+    }
+    &__exercises {
+        clear: left;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        background-color: $white;
+        padding: 1% 2%;
+    }
+    dt {
+        font-weight: bold;
+    }
+    dd {
+        padding: 0.5% 1% 2% 0;
+    }
+    &__mlink {
+        color: $primary;
+        font-weight: bold;
+        text-decoration: none;
+    }
+}

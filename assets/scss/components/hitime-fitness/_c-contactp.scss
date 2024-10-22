@@ -1,0 +1,11 @@
+.c-contactp {
+    grid-column: 1 / 7;
+    text-align: center;
+    &__link {
+        color: $primary;
+        text-decoration: none;
+    }
+    &__map {
+        border: 8px solid #000;
+    }
+}

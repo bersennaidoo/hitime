@@ -1,4 +1,13 @@
 .c-footerp {
-    grid-column: 1 / 7;
-    text-align: center;
+  grid-column: 1 / 7;
+  text-align: center;
+  &__copyright {
+    font-size: $secondary-font-size;
+    color: $white;
+  }
+  &__emaillink {
+    font-size: $secondary-font-size;
+    color: $white;
+    text-decoration: none;
+  }
 }

@@ -65,7 +65,7 @@ function App() {
   }
 
   return (
-    <div className="pt-5 mt-5 layout-container">
+    <div className="pt-5 mt-5">
       <div style={{ paddingLeft: "300px"}}>
       </div>
       <BrowserRouter>

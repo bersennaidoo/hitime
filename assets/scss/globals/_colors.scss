@@ -1,2 +1,44 @@
-$body-bg: lighten(#ccc, 5%);
-$body-color: darken(#ccc, 80%);
+// Color pallete
+$colors: (
+  primary: #000,
+  primary-900: lighten(#000, 10%),
+  primary-800: lighten(#000, 20%),
+  primary-700: lighten(#000, 30%),
+  primary-600: lighten(#000, 40%),
+  primary-500: lighten(#000, 50%),
+  primary-400: lighten(#000, 60%),
+  primary-300: lighten(#000, 70%),
+  primary-200: lighten(#000, 80%),
+  primary-100: lighten(#000, 90%),
+  primary-000: lighten(#000, 100%)
+);
+
+// Dark color palette
+/*$primary: hsl(166, 82%, 53%);
+$white: hsl(0, 0%, 100%);
+$lightest: hsl(166, 4%, 80%);
+$light: hsl(166, 6%, 65%);
+$medium: hsl(166, 8%, 33%);
+$dark: hsl(166, 10%, 23%);
+$darkest: hsl(166, 12%, 15%);*/
+
+// Light color palette
+$primary: hsl(166, 88%, 52%);
+$darkest: hsl(166, 86%, 3%);
+$dark: hsl(166, 11%, 23%);
+$medium: hsl(166, 22%, 66%);
+$light: hsl(166, 10%, 75%);
+$lightest: hsl(166, 2%, 88%);
+$white: hsl(0, 0%, 100%);
+
+
+$secondary: $dark;
+
+$error: #f54135;
+$warning: #fba018;
+$success: #38ce47;
+$info: lighten(blue, 25%);
+
+$body-bg: $medium;
+$body-color: $darkest;
+$secondary-color: $dark;

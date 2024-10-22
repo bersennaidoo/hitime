@@ -1,3 +1,19 @@
 .c-homep {
-    grid-column: 1 / 7;
+  grid-column: 1 / 7;
+  background-color: $white;
+  padding: $spacing;
+  &__intro1 {
+    font-size: $primary-font-size;
+  }
+  &__intro2 {
+    font-size: $primary-font-size;
+  }
+  &__intro3 {
+    font-size: $primary-font-size;
+  }
+  &__cta {
+    font-size: $primary-cta-size;
+    color: $primary;
+    font-weight: bold;
+  }
 }
