@@ -7,6 +7,8 @@
     margin-block-end: 0;
     &__info {
         flex: 30%;
+        padding-block-start: $spacing * 3.5;
+        padding-inline-start: $spacing * 4;
     }
     &__nav {
         flex: 70%;
@@ -27,16 +29,20 @@
     }
     &__dropdown-toggle {
         position: relative;
-        bottom: 6.25rem;
-        left: 16.25rem;
+        bottom: 10.45rem;
+        left: 17.25rem;
         background-color: $medium;
         margin-block-end: 1rem;
     }
     &__dropdown-menu {
         display: none;
         position: relative;
-        bottom: 8rem;
+        bottom: 11.5rem;
         left: 5rem;
+    }
+    &__hamburger {
+        max-inline-size: 100%;
+        color: $darkest;
     }
 }
 
@@ -61,15 +67,11 @@
         }
         &__logo {
             max-inline-size: 100%;
-            background-color: $primary;
-            display: block;
-            border: 1px solid black;
-            padding: $spacing * 0.8;
-            border-radius: $spacing * 10;
         }
         &__info {
             flex: 30%;
-            padding-block-start: $spacing * 2.5;
+            padding-block-start: $spacing * 3.5;
+            padding-inline-start: $spacing * 4;
         }
         &__nav {
             flex: 70%;
