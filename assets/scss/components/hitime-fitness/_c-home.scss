@@ -16,4 +16,8 @@
     color: $primary;
     font-weight: bold;
   }
+  &__cta-link {
+    display: inline-block;
+    text-decoration: none;
+  }
 }

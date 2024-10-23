@@ -23,6 +23,15 @@
         background-color: $white;
         padding: 1% 2%;
     }
+    &__wimg {
+        max-width: $max-width;
+    }
+    &__cimg {
+        max-width: $max-width;
+    }
+    &__timg {
+        max-width: $max-width;
+    }
     dt {
         font-weight: bold;
     }
@@ -30,6 +39,7 @@
         padding: 0.5% 1% 2% 0;
     }
     &__mlink {
+        display: inline-block;
         color: $primary;
         font-weight: bold;
         text-decoration: none;

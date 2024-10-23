@@ -1,6 +1,87 @@
 .c-headerp {
     grid-column: 1 / 7;
     display: flex;
+    flex-direction: column;
+    position: fixed;
+    gap: $spacing * 8;
+    margin-block-end: 0;
+    &__info {
+        flex: 30%;
+    }
+    &__nav {
+        flex: 70%;
+    }
+    &__submenu {
+        background-color: $medium;
+    }
+    &__submenu-md {
+        display: none;
+    }
+    &__item {
+        list-style-type: none;
+        border-bottom: 1px solid $dark;
+    }
+    &__link {
+        text-decoration: none;
+        color: $white;
+    }
+    &__dropdown-toggle {
+        position: relative;
+        bottom: 6.25rem;
+        left: 16.25rem;
+        background-color: $medium;
+        margin-block-end: 1rem;
+    }
+    &__dropdown-menu {
+        display: none;
+        position: relative;
+        bottom: 8rem;
+        left: 5rem;
+    }
+}
+
+@media (min-width: 31.25rem) {
+    .c-headerp {
+        flex-direction: row;
+
+        &__submenu-md {
+            display: flex;
+            padding-block-start: $spacing * 3;
+        }
+        &__item-md {
+            flex: 1 1 auto;
+            list-style-type: none;
+        }
+        &__link-md {
+            display: block;
+            padding: ($spacing / 2) ($spacing);
+            color: $white;
+            font-size: $link-font-size;
+            text-decoration: none;
+        }
+        &__logo {
+            max-inline-size: 100%;
+            background-color: $primary;
+            display: block;
+            border: 1px solid black;
+            padding: $spacing * 0.8;
+            border-radius: $spacing * 10;
+        }
+        &__info {
+            flex: 30%;
+            padding-block-start: $spacing * 2.5;
+        }
+        &__nav {
+            flex: 70%;
+        }
+        &__dropdown {
+            display: none;
+        }
+    }
+}
+/*.c-headerp {
+    grid-column: 1 / 7;
+    display: flex;
     position: fixed;
     gap: $spacing * 8;
     margin-block-end: $spacing * 3;
@@ -37,4 +118,4 @@
         padding: $spacing * 0.8;
         border-radius: $spacing * 10;
     }
-}
+}*/
