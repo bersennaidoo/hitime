@@ -15,12 +15,15 @@
     }
     &__submenu {
         background-color: $medium;
+        inline-size: 14.41rem;
+        padding-inline-start: 0.5rem;
     }
     &__submenu-md {
         display: none;
     }
     &__item {
         list-style-type: none;
+        padding: 1rem;
         border-bottom: 1px solid $dark;
     }
     &__link {
@@ -37,7 +40,7 @@
     &__dropdown-menu {
         display: none;
         position: relative;
-        bottom: 11.5rem;
+        bottom: 12.5rem;
         left: 5rem;
     }
     &__hamburger {

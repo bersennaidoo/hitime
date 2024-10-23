@@ -145,11 +145,14 @@ body {
   .c-headerp__nav {
     flex: 70%; }
   .c-headerp__submenu {
-    background-color: #95bbb2; }
+    background-color: #95bbb2;
+    inline-size: 14.41rem;
+    padding-inline-start: 0.5rem; }
   .c-headerp__submenu-md {
     display: none; }
   .c-headerp__item {
     list-style-type: none;
+    padding: 1rem;
     border-bottom: 1px solid #34413e; }
   .c-headerp__link {
     text-decoration: none;
@@ -163,7 +166,7 @@ body {
   .c-headerp__dropdown-menu {
     display: none;
     position: relative;
-    bottom: 11.5rem;
+    bottom: 12.5rem;
     left: 5rem; }
   .c-headerp__hamburger {
     max-inline-size: 100%;
