@@ -1,11 +1,34 @@
 .c-contactp {
-    grid-column: 1 / 7;
+    grid-column: main;
     text-align: center;
     &__link {
         color: $primary;
         text-decoration: none;
     }
     &__map {
+        inline-size: $column-width-sm * 0.9;
         border: 8px solid #000;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .m-container-grid {
+        max-inline-size: $column-width-md;
+    }
+    .c-contactp {
+        &__map {
+            inline-size: $column-width-md * 0.96;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .m-container-grid {
+        max-inline-size: $column-width-lg;
+    }
+    .c-contactp {
+        &__map {
+            inline-size: $column-width-lg * 0.98;
+        }
     }
 }

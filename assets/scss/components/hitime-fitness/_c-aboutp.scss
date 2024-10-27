@@ -1,47 +1,70 @@
 .c-aboutp {
-    grid-column: 1 / 7;
+  grid-column: main;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing;
 
-    &__weights {
-        inline-size: 29%;
-        float: left;
-        margin: 0 2%;
-    }
-     &__cardio {
-        inline-size: 29%;
-        float: left;
-        margin: 0 2%;
-    }
-     &__training {
-        inline-size: 29%;
-        float: left;
-        margin: 0 2%;
-    }
-    &__exercises {
-        clear: left;
-        border-top: 1px solid #000;
-        border-bottom: 1px solid #000;
-        background-color: $white;
-        padding: 1% 2%;
-    }
-    &__wimg {
-        max-width: $max-width;
-    }
-    &__cimg {
-        max-width: $max-width;
-    }
-    &__timg {
-        max-width: $max-width;
-    }
-    dt {
-        font-weight: bold;
-    }
-    dd {
-        padding: 0.5% 1% 2% 0;
-    }
-    &__mlink {
-        display: inline-block;
-        color: $primary;
-        font-weight: bold;
-        text-decoration: none;
-    }
+  &__weights {
+    flex: auto;
+  }
+  &__cardio {
+    flex: auto;
+  }
+  &__training {
+    flex: auto;
+  }
+  &__exercises {
+    flex: auto;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background-color: $white;
+    padding: 1% 2%;
+  }
+  &__wimg {
+    max-width: $max-width;
+  }
+  &__cimg {
+    max-width: $max-width;
+  }
+  &__timg {
+    max-width: $max-width;
+  }
+  dt {
+    font-weight: bold;
+  }
+  dd {
+    padding: 0.5% 1% 2% 0;
+  }
+  &__mlink {
+    display: block;
+    color: $primary;
+    font-size: $spacing;
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
+
+@media (min-width: $breakpoint-md) {
+  .m-container-grid {
+    max-inline-size: $column-width-md;
+  }
+  .c-aboutp {
+    &__mlink {
+        display: inline;
+      font-size: $spacing * 0.76;
+    }
+  }
+}
+
+
+@media (min-width: $breakpoint-lg) {
+    .m-container-grid {
+        max-inline-size: $column-width-lg;
+    }
+    .c-aboutp {
+      &__mlink {
+        display: inline;
+        font-size: $spacing * 1.025;
+      }
+    }
+  }

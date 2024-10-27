@@ -266,21 +266,18 @@ body {
     text-decoration: none; }
 
 .c-aboutp {
-  grid-column: 1 / 7; }
+  grid-column: main;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
   .c-aboutp__weights {
-    inline-size: 29%;
-    float: left;
-    margin: 0 2%; }
+    flex: auto; }
   .c-aboutp__cardio {
-    inline-size: 29%;
-    float: left;
-    margin: 0 2%; }
+    flex: auto; }
   .c-aboutp__training {
-    inline-size: 29%;
-    float: left;
-    margin: 0 2%; }
+    flex: auto; }
   .c-aboutp__exercises {
-    clear: left;
+    flex: auto;
     border-top: 1px solid #000;
     border-bottom: 1px solid #000;
     background-color: white;
@@ -296,19 +293,47 @@ body {
   .c-aboutp dd {
     padding: 0.5% 1% 2% 0; }
   .c-aboutp__mlink {
-    display: inline-block;
+    display: block;
     color: #19f0be;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none; }
 
+@media (min-width: 26.75rem) {
+  .m-container-grid {
+    max-inline-size: 50.63rem; }
+  .c-aboutp__mlink {
+    display: inline;
+    font-size: 0.76rem; } }
+
+@media (min-width: 50.63rem) {
+  .m-container-grid {
+    max-inline-size: 75rem; }
+  .c-aboutp__mlink {
+    display: inline;
+    font-size: 1.025rem; } }
+
 .c-contactp {
-  grid-column: 1 / 7;
+  grid-column: main;
   text-align: center; }
   .c-contactp__link {
     color: #19f0be;
     text-decoration: none; }
   .c-contactp__map {
+    inline-size: 24.075rem;
     border: 8px solid #000; }
+
+@media (min-width: 26.75rem) {
+  .m-container-grid {
+    max-inline-size: 50.63rem; }
+  .c-contactp__map {
+    inline-size: 48.6048rem; } }
+
+@media (min-width: 50.63rem) {
+  .m-container-grid {
+    max-inline-size: 75rem; }
+  .c-contactp__map {
+    inline-size: 73.5rem; } }
 
 .header-component {
   display: flex;
