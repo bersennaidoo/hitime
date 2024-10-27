@@ -1,9 +1,15 @@
-.m-container {
+.m-container-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing / 0.5;
+    grid-template-areas: 
+              "header header header"
+              "hero hero hero"
+              "main main main"
+              "footer footer footer";
     //grid-template-rows: repeat(4, 1fr);
-    inline-size: 100%;
-    padding: 10px;
+    max-inline-size: $column-width-sm;
+    padding: $spacing / 2;
     margin-inline: auto;
     margin-block: 0;
 }

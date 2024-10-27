@@ -1,7 +1,12 @@
-.c-herop {
-    grid-column: 1 / 7;
-    padding-block-start: $spacing * 12;
-    &__img {
-        max-width: 100%;
-    }
+.c-herop-grid-item {
+    grid-column: hero;
+    padding-block-start: $spacing * 6.88;
+}
+
+@media (min-width: breakpoint-md) {
+    //
+}
+
+@media (min-width: breakpoint-lg) {
+    //
 }

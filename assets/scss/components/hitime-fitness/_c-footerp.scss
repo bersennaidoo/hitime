@@ -1,5 +1,5 @@
-.c-footerp {
-  grid-column: 1 / 7;
+.c-footerp-grid-item {
+  grid-column: footer;
   text-align: center;
   &__copyright {
     font-size: $secondary-font-size;

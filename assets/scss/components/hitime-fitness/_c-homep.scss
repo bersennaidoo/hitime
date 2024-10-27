@@ -1,5 +1,5 @@
-.c-homep {
-  grid-column: 1 / 7;
+.c-homep-grid-item {
+  grid-column: main;
   background-color: $white;
   padding: $spacing;
   &__intro1 {
