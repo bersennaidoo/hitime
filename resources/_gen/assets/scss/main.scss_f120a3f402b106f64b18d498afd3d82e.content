@@ -159,6 +159,7 @@ body {
     border-bottom: 1px solid #34413e; }
   .c-headerp-grid-item__link {
     display: block;
+    font-size: 1.125rem;
     padding-inline: 0.5rem;
     padding-block: 0.33333333rem;
     color: #95bbb2;
@@ -241,7 +242,9 @@ body {
   background-color: white;
   padding: 1rem; }
   .c-homep-grid-item__intro1 {
-    font-size: 1.035rem; }
+    font-size: 1.424rem;
+    font-weight: bold;
+    color: #95bbb2; }
   .c-homep-grid-item__intro2 {
     font-size: 1.035rem; }
   .c-homep-grid-item__intro3 {

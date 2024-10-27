@@ -29,6 +29,7 @@
     }
     &__link {
         display: block;
+        font-size: $h6-font-size;
         padding-inline: $spacing / 2;
         padding-block: $spacing / 3;
         color: $medium;

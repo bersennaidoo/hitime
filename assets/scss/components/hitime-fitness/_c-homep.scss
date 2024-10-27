@@ -3,7 +3,9 @@
   background-color: $white;
   padding: $spacing;
   &__intro1 {
-    font-size: $primary-font-size;
+    font-size: $h4-font-size;
+    font-weight: $font-weight-bold;
+    color: $medium;
   }
   &__intro2 {
     font-size: $primary-font-size;
