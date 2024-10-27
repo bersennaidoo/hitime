@@ -302,16 +302,38 @@ body {
 @media (min-width: 26.75rem) {
   .m-container-grid {
     max-inline-size: 50.63rem; }
-  .c-aboutp__mlink {
-    display: inline;
-    font-size: 0.76rem; } }
+  .c-aboutp {
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .c-aboutp__weights {
+      flex: 0 0 31.98%; }
+    .c-aboutp__cardio {
+      flex: 0 0 31.98%; }
+    .c-aboutp__training {
+      flex: 0 0 31.98%; }
+    .c-aboutp__exercises {
+      flex: auto; }
+    .c-aboutp__mlink {
+      display: inline;
+      font-size: 0.76rem; } }
 
 @media (min-width: 50.63rem) {
   .m-container-grid {
     max-inline-size: 75rem; }
-  .c-aboutp__mlink {
-    display: inline;
-    font-size: 1.025rem; } }
+  .c-aboutp {
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .c-aboutp__weights {
+      flex: 0 0 32.42%; }
+    .c-aboutp__cardio {
+      flex: 0 0 32.42%; }
+    .c-aboutp__training {
+      flex: 0 0 32.42%; }
+    .c-aboutp__exercises {
+      flex: auto; }
+    .c-aboutp__mlink {
+      display: inline;
+      font-size: 1.025rem; } }
 
 .c-contactp {
   grid-column: main;

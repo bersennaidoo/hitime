@@ -49,22 +49,51 @@
     max-inline-size: $column-width-md;
   }
   .c-aboutp {
+    flex-direction: row;
+    flex-wrap: wrap;
+    &__weights {
+      flex: 0 0 31.98%;
+    }
+    &__cardio {
+      flex: 0 0 31.98%;
+    }
+    &__training {
+      flex: 0 0 31.98%;
+    }
+    &__exercises {
+      flex: auto;
+    }
     &__mlink {
-        display: inline;
+      display: inline;
       font-size: $spacing * 0.76;
     }
   }
 }
 
-
 @media (min-width: $breakpoint-lg) {
-    .m-container-grid {
-        max-inline-size: $column-width-lg;
+  .m-container-grid {
+    max-inline-size: $column-width-lg;
+  }
+
+  .c-aboutp {
+    flex-direction: row;
+    flex-wrap: wrap;
+    &__weights {
+      flex: 0 0 32.42%;
     }
-    .c-aboutp {
-      &__mlink {
-        display: inline;
-        font-size: $spacing * 1.025;
-      }
+    &__cardio {
+      flex: 0 0 32.42%;
+    }
+    &__training {
+      flex: 0 0 32.42%;
+    }
+    &__exercises {
+      flex: auto;
+    }
+
+    &__mlink {
+      display: inline;
+      font-size: $spacing * 1.025;
     }
   }
+}
