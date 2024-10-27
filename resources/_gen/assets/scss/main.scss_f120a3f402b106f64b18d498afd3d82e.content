@@ -128,7 +128,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   grid-template-areas: "header header header" "hero hero hero" "main main main" "footer footer footer";
-  max-inline-size: 24.38rem;
+  max-inline-size: 26.75rem;
   padding: 0.5rem;
   margin-inline: auto;
   margin-block: 0; }
@@ -173,7 +173,7 @@ body {
     background-color: #95bbb2;
     color: white; }
 
-@media (min-width: 24.38rem) {
+@media (min-width: 26.75rem) {
   .m-container-grid {
     max-inline-size: 50.63rem; }
   .c-headerp-grid-item {
